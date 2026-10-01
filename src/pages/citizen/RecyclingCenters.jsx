@@ -21,7 +21,7 @@ import "leaflet/dist/leaflet.css";
 */
 
 const API_URL =
-  "http://localhost:5000/api/recycling-centers/nearby";
+  `${import.meta.env.VITE_API_URL}/api/recycling-centers/nearby`;
 
 const DEFAULT_CENTER = [
   17.385044,

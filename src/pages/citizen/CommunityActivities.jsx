@@ -4,7 +4,7 @@ import React, {
   useState,
 } from "react";
 
-const API_BASE_URL = "http://localhost:5000";
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 // Temporary user ID until authentication is connected
 const userId = 1;

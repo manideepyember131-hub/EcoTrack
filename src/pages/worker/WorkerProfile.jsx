@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const API_URL = "http://localhost:5000/api";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const WorkerProfile = () => {
   const navigate = useNavigate();
@@ -63,7 +63,7 @@ const WorkerProfile = () => {
       setError("");
 
       const response = await fetch(
-        `${API_URL}/worker/profile/${userId}`
+        `${API_BASE_URL}/api/worker/profile/${workerId}`
       );
 
       const contentType =

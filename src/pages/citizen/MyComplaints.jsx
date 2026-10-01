@@ -40,7 +40,7 @@ function MyComplaints() {
         );
 
         const response = await fetch(
-          `http://localhost:5000/api/complaints/user/${user.id}`
+          `${import.meta.env.VITE_API_URL}/api/complaints/user/${user.id}`
         );
 
         const data = await response.json();

@@ -114,7 +114,7 @@ export default function CitizenDashboard() {
         );
 
         const complaintResponse = await fetch(
-          `http://localhost:5000/api/complaints/user/${userId}`
+          `${import.meta.env.VITE_API_URL}/api/complaints/user/${userId}`
         );
 
         const complaintData = await complaintResponse.json();
@@ -165,7 +165,7 @@ export default function CitizenDashboard() {
         );
 
         const reportResponse = await fetch(
-          `http://localhost:5000/api/waste-reports/user/${userId}`
+          `${import.meta.env.VITE_API_URL}/api/waste-reports/user/${userId}`
         );
 
         const reportData = await reportResponse.json();

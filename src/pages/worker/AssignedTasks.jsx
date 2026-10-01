@@ -71,7 +71,7 @@ const AssignedTasks = () => {
         setError("");
 
         const response = await fetch(
-          `http://localhost:5000/api/worker/tasks/${workerId}`
+          `${import.meta.env.VITE_API_URL}/api/worker/tasks/${workerId}`
         );
 
         const contentType =

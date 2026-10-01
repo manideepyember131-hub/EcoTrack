@@ -28,7 +28,7 @@ const workerId = loggedInUser?.id;
         setError("");
 
         const response = await fetch(
-          `http://localhost:5000/api/worker/tasks/${taskId}/${workerId}`
+          `${import.meta.env.VITE_API_URL}/api/worker/tasks/${taskId}/${workerId}`
         );
 
         if (!response.ok) {
@@ -83,7 +83,7 @@ const workerId = loggedInUser?.id;
       setError("");
 
       const response = await fetch(
-        `http://localhost:5000/api/worker/tasks/${taskId}/${workerId}/start`,
+        `${import.meta.env.VITE_API_URL}/api/worker/tasks/${taskId}/${workerId}/start`,
         {
           method: "POST",
         }
@@ -121,7 +121,7 @@ const workerId = loggedInUser?.id;
       setError("");
 
       const response = await fetch(
-        `http://localhost:5000/api/worker/tasks/${taskId}/${workerId}/complete`,
+        `${import.meta.env.VITE_API_URL}/api/worker/tasks/${taskId}/${workerId}/complete`,
         {
           method: "POST",
         }

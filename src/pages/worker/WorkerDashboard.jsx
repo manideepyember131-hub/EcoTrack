@@ -44,7 +44,7 @@ export default function WorkerDashboard() {
   // API
   // ==================================================
 
-  const API_BASE_URL = "http://localhost:5000/api";
+  const API_BASE_URL = import.meta.env.VITE_API_URL;
 
   // ==================================================
   // WORKER NAVIGATION
@@ -145,7 +145,7 @@ export default function WorkerDashboard() {
       setError("");
 
       const response = await fetch(
-        `${API_BASE_URL}/worker/dashboard/${workerId}`
+        `${API_BASE_URL}/api/worker/dashboard/${workerId}`
       );
 
       const contentType =
@@ -241,7 +241,7 @@ export default function WorkerDashboard() {
 
         try {
           const response = await fetch(
-            `${API_BASE_URL}/worker/location/${workerId}`,
+            `${API_BASE_URL}/api/worker/location/${workerId}`,
             {
               method: "PUT",
               headers: {
@@ -360,7 +360,7 @@ export default function WorkerDashboard() {
       setStartingTaskId(taskId);
 
       const response = await fetch(
-        `${API_BASE_URL}/worker/tasks/${taskId}/${workerId}/start`,
+        `${API_BASE_URL}/api/worker/tasks/${taskId}/${workerId}/start`,
         {
           method: "POST",
           headers: {
