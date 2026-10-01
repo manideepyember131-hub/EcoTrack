@@ -935,7 +935,7 @@ router.post(
       // ------------------------------------------
 
       const resetUrl =
-        `http://localhost:5173/reset-password?token=${resetToken}`;
+         `${process.env.FRONTEND_URL}/reset-password?token=${resetToken}`;
 
       // ------------------------------------------
       // Send reset email
