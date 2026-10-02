@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 import crypto from "crypto";
 import { sendEmail } from "../utils/email.js";
-
+import Worker from "../models/Worker.js";
 const router = express.Router();
 
 // ======================================================
@@ -212,6 +212,43 @@ router.post("/register", async (req, res) => {
       password: hashedPassword,
       role: cleanRole,
     });
+        // ==================================================
+    // CREATE WORKER PROFILE
+    // ==================================================
+    //
+    // A worker needs:
+    // 1. A record in users
+    // 2. A corresponding record in worker_profiles
+    //
+    // Citizens only need the users record.
+    //
+
+    // ==================================================
+// CREATE WORKER PROFILE
+// ==================================================
+
+if (cleanRole === "worker") {
+  try {
+    const workerProfile =
+      await Worker.createProfile(user._id);
+
+    console.log(
+      "Worker profile created successfully:",
+      workerProfile
+    );
+  } catch (workerError) {
+    console.error(
+      "Worker profile creation failed:",
+      workerError
+    );
+
+    return res.status(500).json({
+      success: false,
+      message:
+        "Account was created, but the worker profile could not be created.",
+    });
+  }
+}
 
     // ==================================================
     // SEND WELCOME EMAIL

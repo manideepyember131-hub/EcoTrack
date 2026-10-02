@@ -33,6 +33,44 @@ class Worker {
 
     return rows[0] || null;
   }
+    // ==================================================
+// CREATE WORKER PROFILE
+// ==================================================
+
+static async createProfile(userId) {
+  if (!userId) {
+    throw new Error(
+      "userId is required to create worker profile"
+    );
+  }
+
+  // Newly registered workers have not yet been
+  // assigned to a municipal zone.
+  const zone = "Unassigned";
+
+  // Generate a unique worker code from the user ID.
+  const workerCode = `WRK${String(userId).padStart(4, "0")}`;
+
+  const [result] = await pool.query(
+    `
+    INSERT INTO worker_profiles (
+      user_id,
+      worker_code,
+      zone
+    )
+    VALUES (?, ?, ?)
+    `,
+    [userId, workerCode, zone]
+  );
+
+  if (result.affectedRows === 0) {
+    throw new Error(
+      "Worker profile could not be created"
+    );
+  }
+
+  return Worker.getProfile(userId);
+}
 
   // ==================================================
   // UPDATE WORKER WORKING LOCATION
