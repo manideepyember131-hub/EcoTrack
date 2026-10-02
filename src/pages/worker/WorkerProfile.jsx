@@ -63,7 +63,7 @@ const WorkerProfile = () => {
       setError("");
 
       const response = await fetch(
-        `${API_BASE_URL}/api/worker/profile/${workerId}`
+        `${API_BASE_URL}/api/worker/profile/${userId}`
       );
 
       const contentType =
